@@ -10,7 +10,7 @@ namespace TodoApi.Controllers;
 public class TodosController(IMediator mediator) : ControllerBase
 {
     [HttpGet("getAll")]
-    public Task<List<TodoDto>> Get()
+    public Task<List<TodoDto>> GetAll()
     {
         return mediator.Send(new GetAllTodosRequest());
     }
@@ -23,7 +23,7 @@ public class TodosController(IMediator mediator) : ControllerBase
     }
 
     [HttpPatch("toggleComplete/{id:guid}")]
-    public async Task<IActionResult> Update(Guid id) // TODO YK
+    public async Task<IActionResult> ToggleComplete(Guid id)
     {
         var result = await mediator.Send(new ToggleTodoCompleteRequest(id));
         return result is null ? NotFound() : Ok(result);

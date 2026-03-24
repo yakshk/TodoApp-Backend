@@ -28,7 +28,7 @@ public class TodosControllerTests
         _mediator.Setup(m => m.Send(It.IsAny<GetAllTodosRequest>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(expected);
 
-        var result = await _controller.Get();
+        var result = await _controller.GetAll();
 
         result.Should().BeEquivalentTo(expected);
     }
@@ -39,7 +39,7 @@ public class TodosControllerTests
         _mediator.Setup(m => m.Send(It.IsAny<GetAllTodosRequest>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync([]);
 
-        var result = await _controller.Get();
+        var result = await _controller.GetAll();
 
         result.Should().BeEmpty();
     }
@@ -82,7 +82,7 @@ public class TodosControllerTests
         _mediator.Setup(m => m.Send(It.IsAny<ToggleTodoCompleteRequest>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(dto);
 
-        var result = await _controller.Update(id);
+        var result = await _controller.ToggleComplete(id);
 
         result.Should().BeOfType<OkObjectResult>()
             .Which.Value.Should().BeEquivalentTo(dto);
@@ -96,7 +96,7 @@ public class TodosControllerTests
         _mediator.Setup(m => m.Send(It.IsAny<ToggleTodoCompleteRequest>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync((TodoDto?)null);
 
-        var result = await _controller.Update(id);
+        var result = await _controller.ToggleComplete(id);
 
         result.Should().BeOfType<NotFoundResult>();
     }
@@ -109,7 +109,7 @@ public class TodosControllerTests
         _mediator.Setup(m => m.Send(It.IsAny<ToggleTodoCompleteRequest>(), It.IsAny<CancellationToken>()))
             .ThrowsAsync(new Exception("Unexpected"));
 
-        Func<Task> act = async () => await _controller.Update(id);
+        Func<Task> act = async () => await _controller.ToggleComplete(id);
 
         await act.Should().ThrowAsync<Exception>();
     }
