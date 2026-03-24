@@ -8,7 +8,7 @@ namespace Application.Handlers;
 
 public class ToggleTodoCompleteHandler(ITodoRepository repo) : IRequestHandler<ToggleTodoCompleteRequest, TodoDto?>
 {
-    public async Task<TodoDto?> Handle(ToggleTodoCompleteRequest request, CancellationToken ct)
+    public async Task<TodoDto?> Handle(ToggleTodoCompleteRequest request, CancellationToken cancellationToken)
     {
         var item = await repo.GetByIdAsync(request.Id);
         if (item is null) return null;

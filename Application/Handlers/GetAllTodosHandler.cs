@@ -8,7 +8,7 @@ namespace Application.Handlers;
 
 public class GetAllTodosHandler(ITodoRepository repo) : IRequestHandler<GetAllTodosRequest, List<TodoDto>>
 {
-    public async Task<List<TodoDto>> Handle(GetAllTodosRequest request, CancellationToken ct)
+    public async Task<List<TodoDto>> Handle(GetAllTodosRequest request, CancellationToken cancellationToken)
     {
         var items = await repo.GetAllAsync();
         return items.Select(x => x.ToDto()).ToList();

@@ -8,7 +8,7 @@ namespace Application.Handlers;
 
 public class GetTodoByIdHandler(ITodoRepository repo) : IRequestHandler<GetTodoByIdRequest, TodoDto?>
 {
-    public async Task<TodoDto?> Handle(GetTodoByIdRequest request, CancellationToken ct)
+    public async Task<TodoDto?> Handle(GetTodoByIdRequest request, CancellationToken cancellationToken)
     {
         var item = await repo.GetByIdAsync(request.Id);
         return item?.ToDto();
