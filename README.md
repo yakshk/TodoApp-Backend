@@ -1,8 +1,14 @@
 # Yaksh's Todo App Api
 
-A production-grade RESTful API built with .NET 10, designed around Clean Architecture principles to ensure long-term maintainability, testability, and scalability. This project demonstrates a disciplined separation of concerns across distinct application layers, with comprehensive test coverage at every level.
+A production-grade RESTful API built with .NET 10, designed around Clean Architecture principles to ensure long-term maintainability, testability, and scalability.
 
 100% test coverage of all logic files.
+
+### [Frontend](https://github.com/yakshk/TodoApp-Frontend)
+
+`https://github.com/yakshk/TodoApp-Frontend`
+
+The backend was separated to avoid creating a monolithic repository, which can quickly become difficult to scale, maintain, and evolve in an enterprise environment.
 
 ---
 
